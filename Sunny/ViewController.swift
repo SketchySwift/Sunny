@@ -23,7 +23,7 @@ class ViewController: UIViewController {
 	@IBOutlet weak var dateLabel: UILabel!
 	
 	// MARK: Properties
-	var windDir: Weather!
+	var windDir: Weather?
 	
 	let N = Weather.windDirections.N
 	let NNE = Weather.windDirections.NNE
@@ -42,11 +42,21 @@ class ViewController: UIViewController {
 	let NW = Weather.windDirections.NW
 	let NNW = Weather.windDirections.NNW
 	
+	
+	
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		// Do any additional setup after loading the view, typically from a nib.
 		updateUI()
+		windDir?.updateTheWindDir()
 		
+		//let date = NSDate(timeIntervalSince1970: 1450614168)
+		//print(date)
+		
+		windDirectionLabel.text = "\(windDir?._windDirect)"
+		
+		print(windDir?._windDirect)
+		print(windDir?.updateTheWindDir())
 	}
 	
 	func convertMillibarsToInches(pressure: Double) -> Double {
@@ -134,77 +144,72 @@ class ViewController: UIViewController {
 							if let wind = dict["wind"] as? Dictionary <String, AnyObject> {
 								if let speed = wind["speed"] as? Double {
 									dispatch_async(dispatch_get_main_queue(), {
-										self.windSpeed.text = "\(speed)"
+										self.windSpeed.text = "\(speed) mph"
 									})
 									print(speed)
-								}
+								} // END OF IF LET SPEED
 								
-								if let direction = wind["deg"] as? Double {
-									
-									switch (direction) {
-									
-									case 348.75...360:
-									self.windDir.wind = self.N
-									
-									case 0..<11.25:
-									self.windDir.wind = self.N
-										
-									case 11.25..<33.75:
-									self.windDir.wind = self.NNE
-									
-									case 33.75..<56.25:
-									self.windDir.wind = self.NE
-									
-									case 56.25..<78.75:
-									self.windDir.wind = self.ENE
-									
-									case 78.75..<101.25:
-									self.windDir.wind = self.E
-									
-									case 101.25..<123.75:
-									self.windDir.wind = self.ESE
-									
-									case 123.75..<146.25:
-									self.windDir.wind = self.SE
-									
-									case 146.25..<168.75:
-									self.windDir.wind = self.SSE
-									
-									case 168.75..<191.25:
-									self.windDir.wind = self.S
-									
-									case 191.25..<213.75:
-									self.windDir.wind = self.SSW
-									
-									case 213.75..<236.25:
-									self.windDir.wind = self.SW
-									
-									case 236.25..<258.75:
-									self.windDir.wind = self.WSW
-									
-									case 258.75..<281.25:
-									self.windDir.wind = self.W
-									
-									case 281.25..<303.75:
-									self.windDir.wind = self.WNW
-									
-									case 303.75..<326.25:
-									self.windDir.wind = self.NW
-									
-									case 326.25..<348.75:
-									self.windDir.wind = self.NNW
-								
-									default:
-									self.windDir.wind = self.N
-										
-									}
-									
-									dispatch_async(dispatch_get_main_queue(), {
-										self.windDirectionLabel.text = "\(direction)"
-									})
-									print(direction)
-									
-								} // End of if let speed
+//								if let direction = wind["deg"] as? Double {
+//									
+//									switch (direction) {
+//									
+//									case 348.75...360:
+//									self.windDir?.wind = self.N
+//									
+//									case 0..<11.25:
+//									self.windDir?.wind = self.N
+//										
+//									case 11.25..<33.75:
+//									self.windDir?.wind = self.NNE
+//									
+//									case 33.75..<56.25:
+//									self.windDir?.wind = self.NE
+//									
+//									case 56.25..<78.75:
+//									self.windDir?.wind = self.ENE
+//									
+//									case 78.75..<101.25:
+//									self.windDir?.wind = self.E
+//									
+//									case 101.25..<123.75:
+//									self.windDir?.wind = self.ESE
+//									
+//									case 123.75..<146.25:
+//									self.windDir?.wind = self.SE
+//									
+//									case 146.25..<168.75:
+//									self.windDir?.wind = self.SSE
+//									
+//									case 168.75..<191.25:
+//									self.windDir?.wind = self.S
+//									
+//									case 191.25..<213.75:
+//									self.windDir?.wind = self.SSW
+//									
+//									case 213.75..<236.25:
+//									self.windDir?.wind = self.SW
+//									
+//									case 236.25..<258.75:
+//									self.windDir?.wind = self.WSW
+//									
+//									case 258.75..<281.25:
+//									self.windDir?.wind = self.W
+//									
+//									case 281.25..<303.75:
+//									self.windDir?.wind = self.WNW
+//									
+//									case 303.75..<326.25:
+//									self.windDir?.wind = self.NW
+//									
+//									case 326.25..<348.75:
+//									self.windDir?.wind = self.NNW
+//								
+//									default:
+//									self.windDir?.wind = self.N
+//								
+//									}
+//									
+//								} // End of if let direction
 								
 							}// END Of if let wind
 							
@@ -230,8 +235,8 @@ class ViewController: UIViewController {
 							}
 							
 							
-							if let dt = dict["dt"] as? Double {
-								let date = NSDate(timeIntervalSince1970: dt)
+							if let date = dict["dt"] as? Double {
+								let date = NSDate(timeIntervalSince1970: date)
 								let dayFormatter = NSDateFormatter()
 								let dateFormatter = NSDateFormatter()
 								let timeFormatter = NSDateFormatter()
@@ -247,6 +252,15 @@ class ViewController: UIViewController {
 									self.dateLabel.text = "\(timeLabel) \(dayLabel)"
 								})
 							}
+							
+							
+							
+							
+							
+							
+							
+							
+							
 							
 						}// ENDDDD::::::: STOP
 						
