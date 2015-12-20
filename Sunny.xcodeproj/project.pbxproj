@@ -12,6 +12,22 @@
 		15BAAB2F1C25C0E600DBE7C8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 15BAAB2D1C25C0E600DBE7C8 /* Main.storyboard */; };
 		15BAAB311C25C0E700DBE7C8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 15BAAB301C25C0E700DBE7C8 /* Assets.xcassets */; };
 		15BAAB341C25C0E700DBE7C8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 15BAAB321C25C0E700DBE7C8 /* LaunchScreen.storyboard */; };
+		15BAAB3E1C25C35300DBE7C8 /* BG.png in Resources */ = {isa = PBXBuildFile; fileRef = 15BAAB3D1C25C35300DBE7C8 /* BG.png */; };
+		15BAAB421C25C4CB00DBE7C8 /* Heavitas.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 15BAAB411C25C4CB00DBE7C8 /* Heavitas.ttf */; };
+		15BAAB441C25C6BB00DBE7C8 /* Simple tfb.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 15BAAB431C25C6BB00DBE7C8 /* Simple tfb.ttf */; };
+		15BAAB4B1C25CC4000DBE7C8 /* Partly Cloudy.png in Resources */ = {isa = PBXBuildFile; fileRef = 15BAAB4A1C25CC4000DBE7C8 /* Partly Cloudy.png */; };
+		15BAAB4D1C25D21600DBE7C8 /* Thermometer.png in Resources */ = {isa = PBXBuildFile; fileRef = 15BAAB4C1C25D21600DBE7C8 /* Thermometer.png */; };
+		15BAAB501C25D36B00DBE7C8 /* My weather JSON.sh in Resources */ = {isa = PBXBuildFile; fileRef = 15BAAB4F1C25D36B00DBE7C8 /* My weather JSON.sh */; };
+		15BAAB531C25D4FA00DBE7C8 /* Humidity.png in Resources */ = {isa = PBXBuildFile; fileRef = 15BAAB521C25D4FA00DBE7C8 /* Humidity.png */; };
+		15BAAB551C25D8AF00DBE7C8 /* Wind Direction.png in Resources */ = {isa = PBXBuildFile; fileRef = 15BAAB541C25D8AF00DBE7C8 /* Wind Direction.png */; };
+		15BAAB571C25D97800DBE7C8 /* Pressure.png in Resources */ = {isa = PBXBuildFile; fileRef = 15BAAB561C25D97800DBE7C8 /* Pressure.png */; };
+		15BAAB5A1C25DAE300DBE7C8 /* Rain_Blue.png in Resources */ = {isa = PBXBuildFile; fileRef = 15BAAB581C25DAE300DBE7C8 /* Rain_Blue.png */; };
+		15BAAB5B1C25DAE300DBE7C8 /* Rain_White.png in Resources */ = {isa = PBXBuildFile; fileRef = 15BAAB591C25DAE300DBE7C8 /* Rain_White.png */; };
+		15BAAB5E1C25DD1400DBE7C8 /* Sunrise.png in Resources */ = {isa = PBXBuildFile; fileRef = 15BAAB5C1C25DD1400DBE7C8 /* Sunrise.png */; };
+		15BAAB5F1C25DD1400DBE7C8 /* Sunset.png in Resources */ = {isa = PBXBuildFile; fileRef = 15BAAB5D1C25DD1400DBE7C8 /* Sunset.png */; };
+		15BAAB611C25FF1700DBE7C8 /* Thermometer.png in Resources */ = {isa = PBXBuildFile; fileRef = 15BAAB601C25FF1700DBE7C8 /* Thermometer.png */; };
+		15BAAB631C2609EC00DBE7C8 /* Direction.png in Resources */ = {isa = PBXBuildFile; fileRef = 15BAAB621C2609EC00DBE7C8 /* Direction.png */; };
+		15BAAB651C26155B00DBE7C8 /* Weather.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15BAAB641C26155B00DBE7C8 /* Weather.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +38,22 @@
 		15BAAB301C25C0E700DBE7C8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		15BAAB331C25C0E700DBE7C8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		15BAAB351C25C0E700DBE7C8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		15BAAB3D1C25C35300DBE7C8 /* BG.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BG.png; sourceTree = "<group>"; };
+		15BAAB411C25C4CB00DBE7C8 /* Heavitas.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Heavitas.ttf; sourceTree = "<group>"; };
+		15BAAB431C25C6BB00DBE7C8 /* Simple tfb.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Simple tfb.ttf"; sourceTree = "<group>"; };
+		15BAAB4A1C25CC4000DBE7C8 /* Partly Cloudy.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Partly Cloudy.png"; sourceTree = "<group>"; };
+		15BAAB4C1C25D21600DBE7C8 /* Thermometer.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Thermometer.png; sourceTree = "<group>"; };
+		15BAAB4F1C25D36B00DBE7C8 /* My weather JSON.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = "My weather JSON.sh"; sourceTree = "<group>"; };
+		15BAAB521C25D4FA00DBE7C8 /* Humidity.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Humidity.png; sourceTree = "<group>"; };
+		15BAAB541C25D8AF00DBE7C8 /* Wind Direction.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Wind Direction.png"; sourceTree = "<group>"; };
+		15BAAB561C25D97800DBE7C8 /* Pressure.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Pressure.png; sourceTree = "<group>"; };
+		15BAAB581C25DAE300DBE7C8 /* Rain_Blue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Rain_Blue.png; path = Assets.xcassets/Icons/Rain_Blue.png; sourceTree = "<group>"; };
+		15BAAB591C25DAE300DBE7C8 /* Rain_White.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Rain_White.png; path = Assets.xcassets/Icons/Rain_White.png; sourceTree = "<group>"; };
+		15BAAB5C1C25DD1400DBE7C8 /* Sunrise.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Sunrise.png; path = Assets.xcassets/Icons/Sunrise.png; sourceTree = "<group>"; };
+		15BAAB5D1C25DD1400DBE7C8 /* Sunset.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Sunset.png; path = Assets.xcassets/Icons/Sunset.png; sourceTree = "<group>"; };
+		15BAAB601C25FF1700DBE7C8 /* Thermometer.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Thermometer.png; path = Assets.xcassets/Icons/Thermometer.png; sourceTree = "<group>"; };
+		15BAAB621C2609EC00DBE7C8 /* Direction.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Direction.png; path = Assets.xcassets/Icons/Direction.png; sourceTree = "<group>"; };
+		15BAAB641C26155B00DBE7C8 /* Weather.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Weather.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,13 +87,61 @@
 			isa = PBXGroup;
 			children = (
 				15BAAB291C25C0E600DBE7C8 /* AppDelegate.swift */,
+				15BAAB641C26155B00DBE7C8 /* Weather.swift */,
 				15BAAB2B1C25C0E600DBE7C8 /* ViewController.swift */,
 				15BAAB2D1C25C0E600DBE7C8 /* Main.storyboard */,
 				15BAAB301C25C0E700DBE7C8 /* Assets.xcassets */,
+				15BAAB3C1C25C34500DBE7C8 /* Resources */,
 				15BAAB321C25C0E700DBE7C8 /* LaunchScreen.storyboard */,
 				15BAAB351C25C0E700DBE7C8 /* Info.plist */,
 			);
 			path = Sunny;
+			sourceTree = "<group>";
+		};
+		15BAAB3C1C25C34500DBE7C8 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				15BAAB4F1C25D36B00DBE7C8 /* My weather JSON.sh */,
+				15BAAB3F1C25C43100DBE7C8 /* Fonts */,
+				15BAAB401C25C44700DBE7C8 /* Images */,
+				15BAAB451C25C86D00DBE7C8 /* ICONS */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		15BAAB3F1C25C43100DBE7C8 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				15BAAB411C25C4CB00DBE7C8 /* Heavitas.ttf */,
+				15BAAB431C25C6BB00DBE7C8 /* Simple tfb.ttf */,
+			);
+			name = Fonts;
+			sourceTree = "<group>";
+		};
+		15BAAB401C25C44700DBE7C8 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				15BAAB3D1C25C35300DBE7C8 /* BG.png */,
+			);
+			name = Images;
+			sourceTree = "<group>";
+		};
+		15BAAB451C25C86D00DBE7C8 /* ICONS */ = {
+			isa = PBXGroup;
+			children = (
+				15BAAB4A1C25CC4000DBE7C8 /* Partly Cloudy.png */,
+				15BAAB4C1C25D21600DBE7C8 /* Thermometer.png */,
+				15BAAB521C25D4FA00DBE7C8 /* Humidity.png */,
+				15BAAB541C25D8AF00DBE7C8 /* Wind Direction.png */,
+				15BAAB561C25D97800DBE7C8 /* Pressure.png */,
+				15BAAB581C25DAE300DBE7C8 /* Rain_Blue.png */,
+				15BAAB591C25DAE300DBE7C8 /* Rain_White.png */,
+				15BAAB5C1C25DD1400DBE7C8 /* Sunrise.png */,
+				15BAAB5D1C25DD1400DBE7C8 /* Sunset.png */,
+				15BAAB601C25FF1700DBE7C8 /* Thermometer.png */,
+				15BAAB621C2609EC00DBE7C8 /* Direction.png */,
+			);
+			name = ICONS;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -123,8 +203,23 @@
 			buildActionMask = 2147483647;
 			files = (
 				15BAAB341C25C0E700DBE7C8 /* LaunchScreen.storyboard in Resources */,
+				15BAAB5B1C25DAE300DBE7C8 /* Rain_White.png in Resources */,
+				15BAAB501C25D36B00DBE7C8 /* My weather JSON.sh in Resources */,
 				15BAAB311C25C0E700DBE7C8 /* Assets.xcassets in Resources */,
+				15BAAB3E1C25C35300DBE7C8 /* BG.png in Resources */,
+				15BAAB571C25D97800DBE7C8 /* Pressure.png in Resources */,
 				15BAAB2F1C25C0E600DBE7C8 /* Main.storyboard in Resources */,
+				15BAAB441C25C6BB00DBE7C8 /* Simple tfb.ttf in Resources */,
+				15BAAB531C25D4FA00DBE7C8 /* Humidity.png in Resources */,
+				15BAAB551C25D8AF00DBE7C8 /* Wind Direction.png in Resources */,
+				15BAAB4B1C25CC4000DBE7C8 /* Partly Cloudy.png in Resources */,
+				15BAAB4D1C25D21600DBE7C8 /* Thermometer.png in Resources */,
+				15BAAB5A1C25DAE300DBE7C8 /* Rain_Blue.png in Resources */,
+				15BAAB421C25C4CB00DBE7C8 /* Heavitas.ttf in Resources */,
+				15BAAB611C25FF1700DBE7C8 /* Thermometer.png in Resources */,
+				15BAAB5E1C25DD1400DBE7C8 /* Sunrise.png in Resources */,
+				15BAAB5F1C25DD1400DBE7C8 /* Sunset.png in Resources */,
+				15BAAB631C2609EC00DBE7C8 /* Direction.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -136,6 +231,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				15BAAB2C1C25C0E600DBE7C8 /* ViewController.swift in Sources */,
+				15BAAB651C26155B00DBE7C8 /* Weather.swift in Sources */,
 				15BAAB2A1C25C0E600DBE7C8 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
