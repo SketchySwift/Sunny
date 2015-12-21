@@ -4,12 +4,31 @@
 //
 //  Created by Abdurrahman on 12/19/15.
 //  Copyright © 2015 Hafiz Developer. All rights reserved.
-//
+//  http://api.openweathermap.org/data/2.5/forecast/daily?zip=22150,us&units=imperial&APPID=b27783fc8b3d085ea01fedbbfebfd879&count=2
+
 
 import UIKit
+import SystemConfiguration
+//import SwiftSpinner
 
 class ViewController: UIViewController {
-
+	
+	var customIND: SwiftNotice?
+	
+	var weather: Weather!
+	
+	func updateBackgroundImage() {
+		switch (weather.icon) {
+		case "01n", "02n", "03n", "04n", "9n", "10n", "11n", "13n", "50n":
+			backgroundImg.image = UIImage(named: "night")
+		case "01d", "02d", "03d", "04d", "09d", "10d", "11d", "13d", "50d":
+			backgroundImg.image = UIImage(named: "BG")
+		default:
+			backgroundImg.image = UIImage(named: "BG")
+		}
+	}
+	
+	@IBOutlet weak var backgroundImg: UIImageView!
 	@IBOutlet weak var temperatureLabel: UILabel!
 	@IBOutlet weak var mainDescriptionLabel: UILabel!
 	@IBOutlet weak var humidLabel: UILabel!
@@ -21,50 +40,148 @@ class ViewController: UIViewController {
 	@IBOutlet weak var fullDescriptionLabel: UILabel!
 	@IBOutlet weak var windDirectionLabel: UILabel!
 	@IBOutlet weak var dateLabel: UILabel!
+	@IBOutlet weak var weatherImage: UIImageView!
+	
+	@IBOutlet weak var refreshIndicator: UIActivityIndicatorView!
+	@IBOutlet weak var refreshButtonOutlet: UIButton!
+	
+	var wifiCheck: Reachability?
+	
+	func seeIfUsersWifiIsOn() {
+		if Reachability.isConnectedToNetwork() == false {
+			showAlert("Could not retrieve data", message: "Make sure your internet connection is on", closeButton: "Ok")
+		} else {
+			updateUI()
+		}
+		
+	}
+	override func viewWillAppear(animated: Bool) {
+		seeIfUsersWifiIsOn()
+	}
+	
+	@IBAction func refreshButton(sender: AnyObject) {
+		if Reachability.isConnectedToNetwork() == false {
+			self.noticeTop("Error!", autoClear: true, autoClearTime: 1)
+			self.noticeError("Try Again!", autoClear: true, autoClearTime: 1)
+			//showAlert("Internet Connection Problem", message: "Perhas something maybe wrong with the internet connection, make sure that you're Wi-Fi is turned on. Try again!", closeButton: "OK")
+		} else {
+			updateUI()
+			self.noticeTop("Updated!", autoClear: true, autoClearTime: 1)
+			self.noticeSuccess("Success!", autoClear: true, autoClearTime: 1)
+			//self.noticeInfo("Info", autoClear: true, autoClearTime: 10)
+		}
+	}
+	
+	override func pleaseWait() {
+		
+	}
+	
+	func startIndicator() {
+		refreshButtonOutlet.hidden = true
+		refreshIndicator.hidden = false
+		refreshIndicator.startAnimating()
+	}
+	
+	func stopIndicator() {
+		refreshIndicator.hidden = true
+		refreshIndicator.stopAnimating()
+		refreshButtonOutlet.hidden = false
+	}
+	
+	// Create a function for an alert that can always be re-used
+	func showAlert(title: String, message: String, closeButton: String) {
+		let alertController = UIAlertController(title: title, message: message, preferredStyle: .Alert)
+		let alertAction = UIAlertAction(title: closeButton, style: .Default, handler: nil)
+		alertController.addAction(alertAction)
+		self.presentViewController(alertController, animated: true, completion: nil)
+	}
 	
 	// MARK: Properties
-	var windDir: Weather?
+	//	var windDir: Weather?
 	
-	let N = Weather.windDirections.N
-	let NNE = Weather.windDirections.NNE
-	let NE = Weather.windDirections.NE
-	let ENE = Weather.windDirections.ENE
-	let E = Weather.windDirections.E
-	let ESE = Weather.windDirections.ESE
-	let SE = Weather.windDirections.SE
-	let SSE = Weather.windDirections.SSE
-	let S = Weather.windDirections.S
-	let SSW = Weather.windDirections.SSE
-	let SW = Weather.windDirections.SW
-	let WSW = Weather.windDirections.WSW
-	let W = Weather.windDirections.W
-	let WNW = Weather.windDirections.WNW
-	let NW = Weather.windDirections.NW
-	let NNW = Weather.windDirections.NNW
+	//	let N = Weather.windDirections.N
+	//	let NNE = Weather.windDirections.NNE
+	//	let NE = Weather.windDirections.NE
+	//	let ENE = Weather.windDirections.ENE
+	//	let E = Weather.windDirections.E
+	//	let ESE = Weather.windDirections.ESE
+	//	let SE = Weather.windDirections.SE
+	//	let SSE = Weather.windDirections.SSE
+	//	let S = Weather.windDirections.S
+	//	let SSW = Weather.windDirections.SSE
+	//	let SW = Weather.windDirections.SW
+	//	let WSW = Weather.windDirections.WSW
+	//	let W = Weather.windDirections.W
+	//	let WNW = Weather.windDirections.WNW
+	//	let NW = Weather.windDirections.NW
+	//	let NNW = Weather.windDirections.NNW
 	
+	var _windDirection: WindDirection?
 	
+	var windDirection: WindDirection {
+		get {
+			if _windDirection == nil {
+				return WindDirection.N
+			} else {
+				return _windDirection!
+			}
+		}
+	}
+	
+	var weatherIcon: String {
+		get {
+			if weather == nil {
+				return weather.icon
+			} else {
+				return weather.icon
+			}
+		}
+	}
+	
+	enum WindDirection {
+		case N
+		case NNE
+		case NE
+		case ENE
+		case E
+		case ESE
+		case SE
+		case SSE
+		case S
+		case SSW
+		case SW
+		case WSW
+		case W
+		case WNW
+		case NW
+		case NNW
+	}
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		// Do any additional setup after loading the view, typically from a nib.
 		updateUI()
-		windDir?.updateTheWindDir()
+		//		windDir?.updateTheWindDir()
 		
 		//let date = NSDate(timeIntervalSince1970: 1450614168)
 		//print(date)
 		
-		windDirectionLabel.text = "\(windDir?._windDirect)"
+		//		windDirectionLabel.text = "\(windDir?._windDirect)"
 		
-		print(windDir?._windDirect)
-		print(windDir?.updateTheWindDir())
+		//		print(windDir?._windDirect)
+		//		print(windDir?.updateTheWindDir())
+		refreshIndicator.hidden = true
+		seeIfUsersWifiIsOn()
+		
 	}
 	
 	func convertMillibarsToInches(pressure: Double) -> Double {
 		return pressure * 0.0295333727
 	}
-
+	
 	func updateUI() {
 		let urlString = "http://api.openweathermap.org/data/2.5/weather?id=4787117,uk&appid=2de143494c0b295cca9337e1e96b00e0"
+		
 		let session = NSURLSession.sharedSession()
 		
 		if let url = NSURL(string: urlString) {
@@ -77,7 +194,7 @@ class ViewController: UIViewController {
 						let json = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.AllowFragments)
 						
 						if let dict = json as? Dictionary <String, AnyObject> {
-						
+							
 							if let main = dict["main"] as? NSDictionary {
 								if let temp = main["temp"] as? Float  {
 									let fehr = Int((temp - 273.15) * 1.8 + 32.00)
@@ -139,6 +256,27 @@ class ViewController: UIViewController {
 								
 								//Icon
 								
+								if let icon = weatherDescription[0]["icon"] as? String {
+									switch (icon) {
+									
+									case "01d", "01n":
+										self.backgroundImg.image = UIImage(named: "ClearBG")
+									case "02d", "02n", "03d", "03n", "04d", "04n":
+										self.backgroundImg.image = UIImage(named: "CloudyBG")
+									case "09d", "09n", "10d", "10n", "11d", "11n", "50d", "50n":
+										self.backgroundImg.image = UIImage(named: "RainyBG")
+									case "13d", "13n":
+										self.backgroundImg.image = UIImage(named: "SnowyBG")
+									default:
+										self.backgroundImg.image = UIImage(named: "ClearBG")
+									
+									}
+									dispatch_async(dispatch_get_main_queue(), {
+										self.weatherImage.image = UIImage(named: icon)
+									})
+								}
+
+								
 							} // END of: if let weather for descriptioon
 							
 							if let wind = dict["wind"] as? Dictionary <String, AnyObject> {
@@ -146,76 +284,80 @@ class ViewController: UIViewController {
 									dispatch_async(dispatch_get_main_queue(), {
 										self.windSpeed.text = "\(speed) mph"
 									})
-									print(speed)
+									
 								} // END OF IF LET SPEED
 								
-//								if let direction = wind["deg"] as? Double {
-//									
-//									switch (direction) {
-//									
-//									case 348.75...360:
-//									self.windDir?.wind = self.N
-//									
-//									case 0..<11.25:
-//									self.windDir?.wind = self.N
-//										
-//									case 11.25..<33.75:
-//									self.windDir?.wind = self.NNE
-//									
-//									case 33.75..<56.25:
-//									self.windDir?.wind = self.NE
-//									
-//									case 56.25..<78.75:
-//									self.windDir?.wind = self.ENE
-//									
-//									case 78.75..<101.25:
-//									self.windDir?.wind = self.E
-//									
-//									case 101.25..<123.75:
-//									self.windDir?.wind = self.ESE
-//									
-//									case 123.75..<146.25:
-//									self.windDir?.wind = self.SE
-//									
-//									case 146.25..<168.75:
-//									self.windDir?.wind = self.SSE
-//									
-//									case 168.75..<191.25:
-//									self.windDir?.wind = self.S
-//									
-//									case 191.25..<213.75:
-//									self.windDir?.wind = self.SSW
-//									
-//									case 213.75..<236.25:
-//									self.windDir?.wind = self.SW
-//									
-//									case 236.25..<258.75:
-//									self.windDir?.wind = self.WSW
-//									
-//									case 258.75..<281.25:
-//									self.windDir?.wind = self.W
-//									
-//									case 281.25..<303.75:
-//									self.windDir?.wind = self.WNW
-//									
-//									case 303.75..<326.25:
-//									self.windDir?.wind = self.NW
-//									
-//									case 326.25..<348.75:
-//									self.windDir?.wind = self.NNW
-//								
-//									default:
-//									self.windDir?.wind = self.N
-//								
-//									}
-//									
-//								} // End of if let direction
+								if let direction = wind["deg"] as? Double {
+									dispatch_async(dispatch_get_main_queue(), {
+										self.windDirectionLabel.text = "\(self.windDirection)"
+										print("Wind is \(self.windDirection)")
+									})
+									
+									switch (direction) {
+										
+									case 348.75...360:
+										self._windDirection = WindDirection.N
+										
+									case 0..<11.25:
+										self._windDirection = WindDirection.N
+										
+									case 11.25..<33.75:
+										self._windDirection = WindDirection.NNE
+										
+									case 33.75..<56.25:
+										self._windDirection = WindDirection.NE
+										
+									case 56.25..<78.75:
+										self._windDirection = WindDirection.ENE
+										
+									case 78.75..<101.25:
+										self._windDirection = WindDirection.E
+										
+									case 101.25..<123.75:
+										self._windDirection = WindDirection.ESE
+										
+									case 123.75..<146.25:
+										self._windDirection = WindDirection.SE
+										
+									case 146.25..<168.75:
+										self._windDirection = WindDirection.SSE
+										
+									case 168.75..<191.25:
+										self._windDirection = WindDirection.S
+										
+									case 191.25..<213.75:
+										self._windDirection = WindDirection.SSW
+										
+									case 213.75..<236.25:
+										self._windDirection = WindDirection.SW
+										
+									case 236.25..<258.75:
+										self._windDirection = WindDirection.WSW
+										
+									case 258.75..<281.25:
+										self._windDirection = WindDirection.W
+										
+									case 281.25..<303.75:
+										self._windDirection = WindDirection.WNW
+										
+									case 303.75..<326.25:
+										self._windDirection = WindDirection.NW
+										
+									case 326.25..<348.75:
+										self._windDirection = WindDirection.NNW
+										
+									default:
+										self._windDirection = WindDirection.N
+										
+									}
+									
+								} // End of if let direction
 								
 							}// END Of if let wind
 							
 							if let sysDetl = dict["sys"] as? Dictionary <String, AnyObject> {
 								if let sunrise = sysDetl["sunrise"] as? Double {
-									let date = NSDate(timeIntervalSince1970: sunrise)
+									var date = NSDate(timeIntervalSince1970: sunrise)
 									let timeFormatter = NSDateFormatter()
 									timeFormatter.dateFormat = "h:mma"
 									dispatch_async(dispatch_get_main_queue(), {
@@ -251,16 +393,18 @@ class ViewController: UIViewController {
 								dispatch_async(dispatch_get_main_queue(), {
 									self.dateLabel.text = "\(timeLabel) \(dayLabel)"
 								})
+
 							}
 							
+							//self.updateBackgroundImage()
 							
-							
-							
-							
-							
-							
-							
-							
+							/*
+							if date == NSDate(timeIntervalSinceReferenceDate: 1450648215) {
+							dispatch_async(dispatch_get_main_queue(), {
+							self.backgroundImg.image = UIImage(named: "night")
+							})
+							}
+							*/
 							
 						}// ENDDDD::::::: STOP
 						
@@ -269,9 +413,15 @@ class ViewController: UIViewController {
 						print(err)
 					}
 				}
-				}.resume()
+			}.resume()
 		}
 	}
-
+	
+	
+	override func preferredStatusBarStyle() -> UIStatusBarStyle {
+		return .LightContent
+	}
+	
+	
 }
 

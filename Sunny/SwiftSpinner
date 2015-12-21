@@ -1,0 +1,9 @@
+platform :ios, ‘9.2’
+use_frameworks!
+
+target ’Sunny’ do
+
+  pod 'SwiftSpinner', '~> 0.8'
+
+end
+
