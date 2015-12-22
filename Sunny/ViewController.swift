@@ -13,20 +13,7 @@ import SystemConfiguration
 
 class ViewController: UIViewController {
 	
-	var customIND: SwiftNotice?
-	
 	var weather: Weather!
-	
-	func updateBackgroundImage() {
-		switch (weather.icon) {
-		case "01n", "02n", "03n", "04n", "9n", "10n", "11n", "13n", "50n":
-			backgroundImg.image = UIImage(named: "night")
-		case "01d", "02d", "03d", "04d", "09d", "10d", "11d", "13d", "50d":
-			backgroundImg.image = UIImage(named: "BG")
-		default:
-			backgroundImg.image = UIImage(named: "BG")
-		}
-	}
 	
 	@IBOutlet weak var backgroundImg: UIImageView!
 	@IBOutlet weak var temperatureLabel: UILabel!
@@ -42,7 +29,6 @@ class ViewController: UIViewController {
 	@IBOutlet weak var dateLabel: UILabel!
 	@IBOutlet weak var weatherImage: UIImageView!
 	
-	@IBOutlet weak var refreshIndicator: UIActivityIndicatorView!
 	@IBOutlet weak var refreshButtonOutlet: UIButton!
 	
 	var wifiCheck: Reachability?
@@ -74,18 +60,6 @@ class ViewController: UIViewController {
 	
 	override func pleaseWait() {
 		
-	}
-	
-	func startIndicator() {
-		refreshButtonOutlet.hidden = true
-		refreshIndicator.hidden = false
-		refreshIndicator.startAnimating()
-	}
-	
-	func stopIndicator() {
-		refreshIndicator.hidden = true
-		refreshIndicator.stopAnimating()
-		refreshButtonOutlet.hidden = false
 	}
 	
 	// Create a function for an alert that can always be re-used
@@ -128,15 +102,15 @@ class ViewController: UIViewController {
 		}
 	}
 	
-	var weatherIcon: String {
-		get {
-			if weather == nil {
-				return weather.icon
-			} else {
-				return weather.icon
-			}
-		}
-	}
+	//	var weatherIcon: String {
+	//		get {
+	//			if weather == nil {
+	//				return weather.icon
+	//			} else {
+	//				return weather.icon
+	//			}
+	//		}
+	//	}
 	
 	enum WindDirection {
 		case N
@@ -160,6 +134,7 @@ class ViewController: UIViewController {
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		// Do any additional setup after loading the view, typically from a nib.
+		seeIfUsersWifiIsOn()
 		updateUI()
 		//		windDir?.updateTheWindDir()
 		
@@ -170,8 +145,6 @@ class ViewController: UIViewController {
 		
 		//		print(windDir?._windDirect)
 		//		print(windDir?.updateTheWindDir())
-		refreshIndicator.hidden = true
-		seeIfUsersWifiIsOn()
 		
 	}
 	
@@ -180,7 +153,9 @@ class ViewController: UIViewController {
 	}
 	
 	func updateUI() {
-		let urlString = "http://api.openweathermap.org/data/2.5/weather?id=4787117,uk&appid=2de143494c0b295cca9337e1e96b00e0"
+		//let urlString = "http://api.openweathermap.org/data/2.5/weather?id=4787117,uk&appid=2de143494c0b295cca9337e1e96b00e0"
+		
+		let urlString = "http://api.openweathermap.org/data/2.5/weather?zip=22150,us&appid=2de143494c0b295cca9337e1e96b00e0"
 		
 		let session = NSURLSession.sharedSession()
 		
@@ -257,25 +232,48 @@ class ViewController: UIViewController {
 								//Icon
 								
 								if let icon = weatherDescription[0]["icon"] as? String {
-									switch (icon) {
 									
-									case "01d", "01n":
-										self.backgroundImg.image = UIImage(named: "ClearBG")
-									case "02d", "02n", "03d", "03n", "04d", "04n":
-										self.backgroundImg.image = UIImage(named: "CloudyBG")
-									case "09d", "09n", "10d", "10n", "11d", "11n", "50d", "50n":
-										self.backgroundImg.image = UIImage(named: "RainyBG")
-									case "13d", "13n":
-										self.backgroundImg.image = UIImage(named: "SnowyBG")
-									default:
-										self.backgroundImg.image = UIImage(named: "ClearBG")
-									
-									}
 									dispatch_async(dispatch_get_main_queue(), {
 										self.weatherImage.image = UIImage(named: icon)
+										
+										switch (icon) {
+										case "9n", "10n", "11n", "13n", "50n":
+											self.backgroundImg.image = UIImage(named: "night")
+											self.refreshButtonOutlet.setImage(UIImage(named: "Refresh icon3"), forState: .Normal)
+										case "01n", "02n", "03n", "04n":
+											self.backgroundImg.image = UIImage(named: "BG2")
+											self.refreshButtonOutlet.setImage(UIImage(named: "Refresh icon2"), forState: .Normal)
+										case "01d", "02d":
+											self.backgroundImg.image = UIImage(named: "BG3")
+											self.refreshButtonOutlet.setImage(UIImage(named: "Refresh icon4"), forState: .Normal)
+										case  "03d", "04d":
+											self.backgroundImg.image = UIImage(named: "BG4")
+											self.refreshButtonOutlet.setImage(UIImage(named: "Refresh icon5"), forState: .Normal)
+										case "09d", "10d", "11d", "13d", "50d":
+											self.backgroundImg.image = UIImage(named: "BG")
+											self.refreshButtonOutlet.setImage(UIImage(named: "Refresh icon"), forState: .Normal)
+										default:
+											self.backgroundImg.image = UIImage(named: "BG")
+											self.refreshButtonOutlet.setImage(UIImage(named: "Refresh icon"), forState: .Normal)
+										}
 									})
+									
+									//									switch (icon) {
+									//
+									//									case "01d", "01n":
+									//										self.backgroundImg.image = UIImage(named: "ClearBG")
+									//									case "02d", "02n", "03d", "03n", "04d", "04n":
+									//										self.backgroundImg.image = UIImage(named: "CloudyBG")
+									//									case "09d", "09n", "10d", "10n", "11d", "11n", "50d", "50n":
+									//										self.backgroundImg.image = UIImage(named: "RainyBG")
+									//									case "13d", "13n":
+									//										self.backgroundImg.image = UIImage(named: "SnowyBG")
+									//									default:
+									//										self.backgroundImg.image = UIImage(named: "ClearBG")
+									
+									
 								}
-
+								
 								
 							} // END of: if let weather for descriptioon
 							
@@ -393,10 +391,10 @@ class ViewController: UIViewController {
 								dispatch_async(dispatch_get_main_queue(), {
 									self.dateLabel.text = "\(timeLabel) \(dayLabel)"
 								})
-
+								
 							}
 							
-							//self.updateBackgroundImage()
+							//							self.updateBackgroundImage()
 							
 							/*
 							if date == NSDate(timeIntervalSinceReferenceDate: 1450648215) {
@@ -406,14 +404,14 @@ class ViewController: UIViewController {
 							}
 							*/
 							
-						}// ENDDDD::::::: STOP
+						} //ENDDDD::::::: STOP
 						
 						print(json)
 					} catch let err as NSError {
 						print(err)
 					}
 				}
-			}.resume()
+				}.resume()
 		}
 	}
 	

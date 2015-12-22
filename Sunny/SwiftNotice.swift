@@ -84,7 +84,7 @@ class SwiftNotice: NSObject {
     }
     
     // fix https://github.com/johnlui/SwiftNotice/issues/2
-    // thanks broccolii(https://github.com/broccolii) and his PR https://github.com/johnlui/SwiftNotice/pull/5
+    // thanks broccolii(https://github.com/broccolii) and his PARTNER https://github.com/johnlui/SwiftNotice/pull/5
     static func clear() {
         self.cancelPreviousPerformRequestsWithTarget(self)
         if let _ = timer {
@@ -100,7 +100,7 @@ class SwiftNotice: NSObject {
         let window = UIWindow()
         window.backgroundColor = UIColor.clearColor()
         let view = UIView()
-        view.backgroundColor = UIColor(red: 60/255, green: 123/255, blue: 218/255, alpha: 1)
+        view.backgroundColor = UIColor(red: 0/255, green: 0/255, blue: 0/255, alpha: 0.8)
         let label = UILabel(frame: frame)
         label.textAlignment = NSTextAlignment.Center
         label.font = UIFont.systemFontOfSize(14)
@@ -202,7 +202,7 @@ class SwiftNotice: NSObject {
         window.backgroundColor = UIColor.clearColor()
         let mainView = UIView()
         mainView.layer.cornerRadius = 10
-        mainView.backgroundColor = UIColor(red: 60/255, green: 123/255, blue: 218/255, alpha: 0.6)
+        mainView.backgroundColor = UIColor(red: CGFloat(drand48()), green: CGFloat(drand48()), blue: CGFloat(drand48()), alpha: CGFloat(drand48()))
         
         var image = UIImage()
         switch type {

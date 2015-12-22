@@ -25,8 +25,7 @@ class Weather {
 			}
 			return _icon
 		}
-	}
-
+	}	
 	// END of ICON ---------------------
 	
 	var windDirectionGet: windDirections {
@@ -75,13 +74,13 @@ class Weather {
 						if let dict = json as? Dictionary <String, AnyObject> {
 							
 							if let weatherDescription = dict["weather"] as? [Dictionary <String, AnyObject>] where weatherDescription.count > 0 {
-							
+								
 								if let icon = weatherDescription[0]["icon"] as? String {
 									self._icon = icon
 								}
-
+								
 							}
-						
+							
 							if let wind = dict["wind"] as? Dictionary <String, AnyObject> {
 								if let direction = wind["deg"] as? Double {
 									
